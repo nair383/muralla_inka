@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Restobar Muralla Inka | Sabor Peruano</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Barra de Navegación Móvil -->
+    <header class="mobile-header">
+        <div class="logo-container">
+            <span class="badge-status">Abierto</span>
+            <h1>Muralla Inka</h1>
+        </div>
+        <div class="header-actions">
+            <!-- Widget de Favoritos / Pedidos rápidos -->
+            <button class="cart-trigger" onclick="toggleCartDrawer()">
+                <i class="fa-solid fa-heart"></i>
+                <span id="cart-counter" class="cart-badge">0</span>
+            </button>
+            <button id="menu-toggle" aria-label="Abrir Menú">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Menú Desplegable Lateral (Off-canvas) -->
+    <nav id="side-menu" class="side-menu">
+        <div class="menu-header">
+            <h3>Navegación</h3>
+            <button id="menu-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <ul>
+            <li><a href="#inicio"><i class="fa-solid fa-house"></i> Inicio</a></li>
+            <li><a href="#menu"><i class="fa-solid fa-utensils"></i> Carta Interactiva</a></li>
+            <li><a href="#opiniones"><i class="fa-solid fa-star"></i> Opiniones</a></li>
+            <li><a href="#contacto"><i class="fa-solid fa-location-dot"></i> Ubicación y Horarios</a></li>
+        </ul>
+    </nav>
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        
+        <!-- Hero Section -->
+        <section id="inicio" class="hero-section">
+            <div class="hero-card">
+                <div class="rating-badge">
+                    <i class="fa-solid fa-star"></i> 4.4 (43 opiniones)
+                </div>
+                <h2>Auténtica Comida Peruana en La Florida</h2>
+                <p>Disfruta de los mejores platos típicos con la sazón tradicional y un ambiente inigualable.</p>
+                <div class="hero-actions">
+                    <a href="#menu" class="btn-primary"><i class="fa-solid fa-book-open"></i> Ver Menú</a>
+                    <a href="tel:959115198" class="btn-secondary"><i class="fa-solid fa-phone"></i> Llamar</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Widget Informativo Rápido (Nuevo) -->
+        <section class="quick-widgets">
+            <div class="mini-widget">
+                <i class="fa-solid fa-motorcycle"></i>
+                <div>
+                    <strong>Delivery Propio</strong>
+                    <span>En todo La Florida</span>
+                </div>
+            </div>
+            <div class="mini-widget">
+                <i class="fa-solid fa-credit-card"></i>
+                <div>
+                    <strong>Medios de Pago</strong>
+                    <span>Efectivo, Redcompra y Transferencia</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Categorías / Filtros Dinámicos y Buscador -->
+        <section id="menu" class="menu-section">
+            <div class="section-title">
+                <h2>Nuestra Carta</h2>
+                <p>Toca las tarjetas para ver detalles</p>
+            </div>
+
+            <!-- Buscador en tiempo real (Nuevo) -->
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="food-search" placeholder="Busca un plato (ej. Lomo, Ceviche)...">
+            </div>
+
+            <div class="filter-chips">
+                <button class="chip active" data-filter="all">Todos</button>
+                <button class="chip" data-filter="platos">Platos de Fondo</button>
+                <button class="chip" data-filter="mariscos">Mariscos</button>
+            </div>
+
+            <!-- Tarjetas Interactivas -->
+            <div class="cards-container">
+                
+                <!-- Lomo Saltado -->
+                <div class="food-card" data-category="platos" data-name="lomo saltado">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1678258287864-42b7dd943f07?auto=format&fit=crop&w=600&q=80" alt="Lomo Saltado">
+                        <span class="price-tag">$12.000</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Lomo Saltado</h3>
+                        <p class="short-desc">Fino lomo fino salteado al wok con cebolla, tomates y papas fritas.</p>
+                        <div class="card-footer-actions">
+                            <button class="btn-details" onclick="openModal('Lomo Saltado', '$12.000', 'Fino lomo salteado al wok con vegetales frescos, salsa de soya, acompañado de papas doradas y arroz blanco.', 'https://images.unsplash.com/photo-1678258287864-42b7dd943f07?auto=format&fit=crop&w=600&q=80')">
+                                Ver más <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                            <button class="btn-favorite" onclick="toggleFavorite(this, 'Lomo Saltado')">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ají de Gallina -->
+                <div class="food-card" data-category="platos" data-name="aji de gallina">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=80" alt="Ají de Gallina">
+                        <span class="price-tag">$11.500</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Ají de Gallina</h3>
+                        <p class="short-desc">Deliciosa crema de ají amarillo, leche, queso y deshilachado de gallina.</p>
+                        <div class="card-footer-actions">
+                            <button class="btn-details" onclick="openModal('Ají de Gallina', '$11.500', 'Clásico plato peruano a base de crema de ají amarillo, leche, nueces, queso fresco y pechuga de gallina deshilachada.', 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=80')">
+                                Ver más <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                            <button class="btn-favorite" onclick="toggleFavorite(this, 'Ají de Gallina')">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ceviche Peruano -->
+                <div class="food-card" data-category="mariscos" data-name="ceviche mixto clasico">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?auto=format&fit=crop&w=600&q=80" alt="Ceviche">
+                        <span class="price-tag">$13.500</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Ceviche Mixto / Clásico</h3>
+                        <p class="short-desc">Pescado fresco del día marinado en limón de pica, cebolla morada y rocoto.</p>
+                        <div class="card-footer-actions">
+                            <button class="btn-details" onclick="openModal('Ceviche', '$13.500', 'Pescado fresco marinado al momento en limones seleccionados, acompañado de choclo peruano, camote y cancha.', 'https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?auto=format&fit=crop&w=600&q=80')">
+                                Ver más <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                            <button class="btn-favorite" onclick="toggleFavorite(this, 'Ceviche Mixto')">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pollo a las Brasas -->
+                <div class="food-card" data-category="platos" data-name="pollo a las brasas">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=600&q=80" alt="Pollo a las Brasas">
+                        <span class="price-tag">$10.000</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Pollo a las Brasas</h3>
+                        <p class="short-desc">Jugoso pollo marinando con especias peruanas y cocinado al carbón.</p>
+                        <div class="card-footer-actions">
+                            <button class="btn-details" onclick="openModal('Pollo a las Brasas', '$10.000', 'Pollo jugoso al cilindro o carbón con adobo secreto de la casa, papas fritas crujientes y ensalada fresca.', 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=600&q=80')">
+                                Ver más <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                            <button class="btn-favorite" onclick="toggleFavorite(this, 'Pollo a las Brasas')">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Opiniones de Clientes -->
+        <section id="opiniones" class="reviews-section">
+            <div class="section-title">
+                <h2>Lo que dicen nuestros clientes</h2>
+            </div>
+            <div class="reviews-slider">
+                <div class="review-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"Siempre es maravillosa la experiencia! Cada plato es exquisito. El ceviche mi preferido."</p>
+                    <span>— Flor Lugo</span>
+                </div>
+                <div class="review-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"Pedimos lomo saltado y estaba todo muy exquisito, la carne en su punto y el ají de gallina abundante."</p>
+                    <span>— Camila a.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto e Información -->
+        <section id="contacto" class="contact-section">
+            <div class="section-title">
+                <h2>Visítanos</h2>
+            </div>
+            <div class="info-box">
+                <div class="info-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <h4>Dirección</h4>
+                        <p>Los Canelos 16, 8240000 La Florida, Región Metropolitana</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <h4>Horario</h4>
+                        <p>Abierto • Cierra a las 11:00 p.m.</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <div>
+                        <h4>Teléfono / Pedidos</h4>
+                        <p>+56 9 5911 5198</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Interactivo para Platos -->
+    <div id="food-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            <img id="modal-img" src="" alt="Plato">
+            <div class="modal-body">
+                <h3 id="modal-title">Título</h3>
+                <span id="modal-price" class="price-tag"></span>
+                <p id="modal-desc">Descripción</p>
+                <a href="tel:959115198" class="btn-primary" style="text-align: center; display: block; margin-top: 20px;">
+                    <i class="fa-solid fa-cart-shopping"></i> Pedir este plato
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de Acciones Flotante Inferior (Móvil) -->
+    <nav class="bottom-nav">
+        <a href="#inicio" class="nav-item active"><i class="fa-solid fa-house"><span>Inicio</span></i></a>
+        <a href="#menu" class="nav-item"><i class="fa-solid fa-utensils"><span>Menú</span></i></a>
+        <a href="tel:959115198" class="nav-item highlight"><i class="fa-solid fa-phone"><span>Llamar</span></i></a>
+        <a href="#contacto" class="nav-item"><i class="fa-solid fa-location-dot"><span>Local</span></i></a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
