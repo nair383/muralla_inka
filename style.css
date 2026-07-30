@@ -1,11 +1,12 @@
 :root {
-    --bg-color: #0f1115;
-    --card-bg: #181b22;
-    --accent-color: #f59e0b;
-    --text-main: #f3f4f6;
-    --text-muted: #9ca3af;
-    --primary-red: #e11d48;
-    --border-color: #2d3748;
+    --bg-color: #161210;          /* Fondo cálido peruano (madera/arcilla oscura) */
+    --card-bg: #221c18;           /* Fondo de tarjetas más suave */
+    --accent-color: #f59e0b;      /* Amarillo maíz / ají andino */
+    --accent-secondary: #c2410c;  /* Terracota / rojo ladrillo */
+    --text-main: #fef3c7;         /* Texto marfil claro cálido */
+    --text-muted: #d1d5db;        /* Texto secundario legible */
+    --primary-red: #dc2626;       /* Rojo peruano intenso */
+    --border-color: #3f322b;      /* Bordes rústicos elegantes */
 }
 
 * {
@@ -19,8 +20,25 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
-    padding-bottom: 70px;
+    padding-bottom: 80px;
     overflow-x: hidden;
+}
+
+/* Tipografía de Títulos tradicional */
+h1, h2, h3, .logo-container h1 {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Animaciones al hacer scroll (Scroll Reveal) */
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Header Móvil y Acciones */
@@ -28,13 +46,13 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(15, 17, 21, 0.9);
+    background: rgba(22, 18, 16, 0.95);
     backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 2px solid var(--accent-secondary);
 }
 
 .logo-container {
@@ -44,16 +62,16 @@ body {
 }
 
 .logo-container h1 {
-    font-size: 1.2rem;
-    font-weight: 800;
+    font-size: 1.3rem;
+    font-weight: 900;
     letter-spacing: -0.5px;
-    color: #fff;
+    color: var(--accent-color);
 }
 
 .badge-status {
-    background: #059669;
+    background: #047857;
     color: #fff;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     padding: 3px 8px;
     border-radius: 20px;
     font-weight: 600;
@@ -66,11 +84,11 @@ body {
 }
 
 .cart-trigger {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(245, 158, 11, 0.1);
     border: 1px solid var(--border-color);
     color: var(--accent-color);
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -98,7 +116,7 @@ body {
 #menu-toggle {
     background: none;
     border: none;
-    color: #fff;
+    color: var(--accent-color);
     font-size: 1.4rem;
     cursor: pointer;
 }
@@ -113,10 +131,11 @@ body {
     background: var(--card-bg);
     z-index: 1000;
     transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -5px 0 25px rgba(0,0,0,0.5);
+    box-shadow: -5px 0 25px rgba(0,0,0,0.6);
     padding: 20px;
     display: flex;
     flex-direction: column;
+    border-left: 2px solid var(--accent-secondary);
 }
 
 .side-menu.open {
@@ -133,7 +152,8 @@ body {
 }
 
 .menu-header h3 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    color: var(--accent-color);
 }
 
 #menu-close {
@@ -172,7 +192,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.7);
     backdrop-filter: blur(3px);
     z-index: 999;
     opacity: 0;
@@ -198,12 +218,24 @@ body {
 }
 
 .hero-card {
-    background: linear-gradient(135deg, #1e222b 0%, #14171f 100%);
+    background: linear-gradient(145deg, #2a211c 0%, #1c1613 100%);
     border: 1px solid var(--border-color);
     border-radius: 20px;
     padding: 25px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-secondary), var(--accent-color));
 }
 
 .rating-badge {
@@ -214,16 +246,17 @@ body {
     color: var(--accent-color);
     padding: 5px 12px;
     border-radius: 20px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     margin-bottom: 15px;
 }
 
 .hero-card h2 {
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-size: 1.6rem;
+    font-weight: 700;
     margin-bottom: 10px;
-    line-height: 1.2;
+    line-height: 1.25;
+    color: #fff;
 }
 
 .hero-card p {
@@ -254,7 +287,7 @@ body {
 
 .btn-primary {
     background: var(--accent-color);
-    color: #0f1115;
+    color: #1c1613;
 }
 
 .btn-secondary {
@@ -267,7 +300,7 @@ body {
     transform: scale(0.96);
 }
 
-/* Nuevos Mini Widgets Informativos */
+/* Mini Widgets Informativos */
 .quick-widgets {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -316,7 +349,7 @@ body {
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--text-muted);
+    color: var(--accent-color);
     font-size: 0.9rem;
 }
 
@@ -342,8 +375,9 @@ body {
 }
 
 .section-title h2 {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     font-weight: 700;
+    color: var(--accent-color);
 }
 
 .section-title p {
@@ -378,7 +412,7 @@ body {
 
 .chip.active {
     background: var(--accent-color);
-    color: #0f1115;
+    color: #1c1613;
     border-color: var(--accent-color);
 }
 
@@ -397,7 +431,11 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.food-card:hover {
+    border-color: var(--accent-secondary);
 }
 
 .card-img {
@@ -417,13 +455,14 @@ body {
     position: absolute;
     bottom: 8px;
     left: 8px;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(28, 22, 19, 0.85);
     backdrop-filter: blur(4px);
     color: var(--accent-color);
     font-size: 0.75rem;
     font-weight: 800;
     padding: 3px 8px;
     border-radius: 6px;
+    border: 1px solid var(--border-color);
 }
 
 .card-body {
@@ -432,9 +471,10 @@ body {
 }
 
 .card-body h3 {
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     margin-bottom: 4px;
+    color: #fff;
 }
 
 .short-desc {
@@ -481,8 +521,8 @@ body {
 
 .btn-favorite.active {
     color: var(--primary-red);
-    border-color: rgba(225, 29, 72, 0.4);
-    background: rgba(225, 29, 72, 0.1);
+    border-color: rgba(220, 38, 38, 0.4);
+    background: rgba(220, 38, 38, 0.1);
 }
 
 /* Opiniones */
@@ -526,7 +566,7 @@ body {
 
 .review-card span {
     font-size: 0.75rem;
-    color: var(--text-muted);
+    color: var(--accent-color);
     font-weight: 600;
 }
 
@@ -604,6 +644,7 @@ body {
     max-height: 85vh;
     display: flex;
     flex-direction: column;
+    border-top: 2px solid var(--accent-secondary);
 }
 
 .modal.active .modal-content {
@@ -643,6 +684,7 @@ body {
     font-size: 1.3rem;
     font-weight: 800;
     margin-bottom: 5px;
+    color: #fff;
 }
 
 .modal-body .price-tag {
@@ -665,7 +707,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(15, 17, 21, 0.95);
+    background: rgba(22, 18, 16, 0.95);
     backdrop-filter: blur(10px);
     border-top: 1px solid var(--border-color);
     display: flex;
@@ -696,7 +738,7 @@ body {
 
 .nav-item.highlight i {
     background: var(--accent-color);
-    color: #0f1115;
+    color: #1c1613;
     width: 38px;
     height: 38px;
     border-radius: 50%;
