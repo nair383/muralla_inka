@@ -58,6 +58,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchInput) {
         searchInput.addEventListener('input', filterMenu);
     }
+
+    // Animación al hacer scroll (Scroll Reveal Observer)
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Animar solo una vez por elemento
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    revealElements.forEach(element => {
+        scrollObserver.observe(element);
+    });
 });
 
 // Sistema de Favoritos Interactivo
